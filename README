@@ -1,0 +1,25 @@
+- What is this?
+
+This is my attempt at porting NetBSD sed to Linux.
+
+With my little-to-zero knowledge of C, I hope I made at least 
+mistakes as possible, so I wouldn't have to fix them (because I can't).
+
+- Why?
+
+I didn't like how heavy GNU sed is.
+
+NetBSD sed's '-i' behaves just like the GNU version, but it's a lot smaller.
+
+- How do I use this?
+
+Just type `make`. To install, `make install`. To uninstall, `make uninstall`.
+
+It should work fine on most implementations, though personally I have only
+tested it with GNU make and bmake.
+
+There are some variables you probably should look at:
+	+ CC 	 - default C compiler to use 		- defaults to `cc`.
+	+ PREFIX - install prefix 			- defaults to /usr/local
+	+ BINDIR - binary (sed) install location 	- defaults to ${PREFIX}/bin
+	+ MANDIR - manpage (sed.1) install location 	- defaults to ${PREFIX}/share/man
