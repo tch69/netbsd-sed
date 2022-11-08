@@ -1,6 +1,7 @@
 
 
 CC ?= cc
+STRIP ?= strip
 
 SRCS =	compat.c compile.c main.c misc.c process.c
 OBJS =  ${SRCS:.c=.o}
@@ -18,6 +19,7 @@ MANDIR ?= ${PREFIX}/share/man
 
 sed: ${OBJS}
 	${CC} -o $@ ${OBJS} ${LDFLAGS}
+	${STRIP} --strip-unneeded $@
 
 install: sed
 	install -d ${BINDIR}
