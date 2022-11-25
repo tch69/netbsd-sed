@@ -55,6 +55,8 @@
 #include "defs.h"
 #include "extern.h"
 
+#define __UNCONST(a)  ((void *)(unsigned long)(const void *)(a))
+
 /*
  * Linked list of units (strings and files) to be compiled
  */

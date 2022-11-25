@@ -27,26 +27,6 @@
  * SUCH DAMAGE.
  */
 
-#ifndef __IDSTRING
-#define __IDSTRING(_n,_s) \
-        static const char _n[] __attribute((__unused__)) = _s
-#endif
-
-#ifndef __COPYRIGHT
-#define __COPYRIGHT(_s) __IDSTRING(copyright,_s)
-#endif
-
-#ifndef __RCSID
-#define __RCSID(_s) 	__IDSTRING(rcsid,_s)
-#endif
-
-#ifndef __UNCONST
-#define __UNCONST(a) 	((void *)(unsigned long)(const void *)(a))
-#endif
-
-#ifndef ALLPERMS
-#endif
-
 #ifdef _SYS_STAT_H
 #define ALLPERMS 	(S_ISUID|S_ISGID|S_ISTXT|S_IRWXU|S_IRWXG|S_IRWXO)
 #define DEFFILEMODE 	(S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
@@ -62,4 +42,6 @@ __dead void 	verrc(int, int, const char *, va_list)
                         __attribute__((__format__(printf, 3, 0)));
 #endif
 
+#ifdef _STDLIB_H
 extern char *__progname;
+#endif
