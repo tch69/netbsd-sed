@@ -33,20 +33,9 @@
  * SUCH DAMAGE.
  */
 
-#include "compat.h"
-
-__RCSID("$NetBSD: process.c,v 1.52 2015/03/12 12:40:41 christos Exp $");
-#ifdef __FBSDID
-__FBSDID("$FreeBSD: head/usr.bin/sed/process.c 192732 2009-05-25 06:45:33Z brian $");
-#endif
-
-#if 0
-static const char sccsid[] = "@(#)process.c	8.6 (Berkeley) 4/20/94";
-#endif
-
 #include <sys/types.h>
 #include <sys/ioctl.h>
-#include <sys/uio.h>
+#include <sys/stat.h>
 
 #include <ctype.h>
 #include <err.h>

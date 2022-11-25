@@ -36,6 +36,8 @@
  * $FreeBSD: head/usr.bin/sed/extern.h 170608 2007-06-12 12:05:24Z yar $
  */
 
+#include "compat.h"
+
 extern struct s_command *prog;
 extern struct s_appends *appends;
 extern regmatch_t *match;

@@ -27,12 +27,13 @@
  * SUCH DAMAGE.
  */
 
-#include "compat.h"
+#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#if !HAVE_ERR_H || !HAVE_DECL_ERRC
+#include "compat.h"
+
 __dead void
 errc(int eval, int code, const char *fmt, ...)
 {
@@ -46,7 +47,7 @@ errc(int eval, int code, const char *fmt, ...)
 __dead void
 verrc(int eval, int code, const char *fmt, va_list ap)
 {
-        (void)fprintf(stderr, "%s: ", getprogname());
+        (void)fprintf(stderr, "%s: ", __progname);
         if (fmt != NULL) {
                 (void)vfprintf(stderr, fmt, ap);
                 (void)fprintf(stderr, ": ");
@@ -54,10 +55,3 @@ verrc(int eval, int code, const char *fmt, va_list ap)
         (void)fprintf(stderr, "%s\n", strerror(code));
         exit(eval);
 }
-#endif
-
-extern const char *__progname;
-
-const char * getprogname(void) { return (__progname); }
-
-void setprogname(const char *progname) {}

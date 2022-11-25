@@ -27,10 +27,6 @@
  * SUCH DAMAGE.
  */
 
-#include <sys/stat.h>
-#include <err.h>
-#include <stdarg.h>
-
 #ifndef __IDSTRING
 #define __IDSTRING(_n,_s) \
         static const char _n[] __attribute((__unused__)) = _s
@@ -49,29 +45,21 @@
 #endif
 
 #ifndef ALLPERMS
+#endif
+
+#ifdef _SYS_STAT_H
 #define ALLPERMS 	(S_ISUID|S_ISGID|S_ISTXT|S_IRWXU|S_IRWXG|S_IRWXO)
-#endif
-
-#ifndef DEFFILEMODE
 #define DEFFILEMODE 	(S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
-#endif
-
-#ifndef S_ISTXT
 #define S_ISTXT 	S_ISVTX
 #endif
 
 #define __dead  	__attribute__((__noreturn__))
 
+#ifdef _ERR_H
 __dead void 	errc(int, int, const char *, ...)
-                        __attribute__((__format__ (printf, 3, 4)));
+                        __attribute__((__format__(printf, 3, 4)));
 __dead void 	verrc(int, int, const char *, va_list)
-                        __attribute__((__format__ (printf, 3, 0)));
+                        __attribute__((__format__(printf, 3, 0)));
+#endif
 
-void 		warnc(int, const char *, ...)
-                        __attribute__((__format__ (printf, 2, 3)));
-void 		vwarnc(int, const char *, va_list)
-                        __attribute__((__format__ (printf, 2, 0)));
-
-const 		char * getprogname(void);
-
-void 		setprogname(const char *progname);
+extern char *__progname;

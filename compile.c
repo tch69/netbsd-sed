@@ -33,19 +33,11 @@
  * SUCH DAMAGE.
  */
 
-#include "compat.h"
-
-__RCSID("$NetBSD: compile.c,v 1.47 2016/04/05 00:13:03 christos Exp $");
-#ifdef __FBSDID
-__FBSDID("$FreeBSD: head/usr.bin/sed/compile.c 259132 2013-12-09 18:57:20Z eadler $");
-#endif
-
-#if 0
-static const char sccsid[] = "@(#)compile.c	8.1 (Berkeley) 6/6/93";
-#endif
-
 #include <sys/types.h>
+#include <sys/stat.h>
+
 #include <ctype.h>
+#include <err.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>

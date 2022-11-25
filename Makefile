@@ -1,25 +1,22 @@
 
-
 CC ?= cc
-STRIP ?= strip
 
-SRCS =	compat.c compile.c main.c misc.c process.c
+SRCS =	compile.c err.c main.c misc.c process.c
 OBJS =  ${SRCS:.c=.o}
 MAN  =  sed.1
 
-CFLAGS += -g -g1 -O3 
+CFLAGS ?= -O3
+CFLAGS += -Wall -I.
 LDFLAGS +=
 
 PREFIX ?= /usr/local
-BINDIR ?= ${PREFIX}/bin
 MANDIR ?= ${PREFIX}/share/man
 
 .c.o:
-	${CC} -c ${CFLAGS} $<
+	${CC} ${CFLAGS} -c $<
 
 sed: ${OBJS}
 	${CC} -o $@ ${OBJS} ${LDFLAGS}
-	${STRIP} --strip-unneeded $@
 
 install: sed
 	install -d ${BINDIR}
@@ -31,5 +28,5 @@ uninstall:
 	rm -f ${BINDIR}/sed
 	rm -f ${MANDIR}/man1/sed.1
 
-clean: 
+clean:
 	rm -f sed ${OBJS}
